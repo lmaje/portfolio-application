@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accent Color</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0f0f13;
+    color: #e0e0e0;
+    font-family: system-ui, sans-serif;
+    padding: 32px 24px 60px;
+    min-height: 100vh;
+  }
+
+  h1 { text-align: center; font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #888; font-size: 14px; margin-bottom: 40px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .swatch {
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+    background: #1a1a22;
+  }
+
+  .swatch:hover { transform: translateY(-3px); }
+  .swatch.selected {
+    border-color: #7c6af7;
+    box-shadow: 0 0 0 3px rgba(124,106,247,0.25);
+  }
+
+  /* Mini editorial preview */
+  .preview {
+    background: #f5f3ee;
+    padding: 20px 20px 16px;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    font-family: system-ui, sans-serif;
+  }
+
+  .preview .label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .preview .big-name {
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 0.9;
+    color: #111;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+  }
+
+  .preview .dash {
+    width: 36px;
+    height: 3px;
+    margin-bottom: 10px;
+    border-radius: 2px;
+  }
+
+  .preview .tagline {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.5;
+    max-width: 170px;
+  }
+
+  .preview .grid-row {
+    display: flex;
+    gap: 1px;
+    margin-top: 16px;
+    background: #111;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .preview .cell {
+    flex: 1;
+    padding: 8px 10px;
+    background: #f5f3ee;
+  }
+
+  .preview .cell-label {
+    font-size: 7px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin-bottom: 3px;
+  }
+
+  .preview .cell-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .preview .cell.accent-cell .cell-label,
+  .preview .cell.accent-cell .cell-name { color: #fff; }
+
+  .swatch-info {
+    padding: 16px 18px 18px;
+  }
+
+  .swatch-info h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .swatch-info p {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  .color-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .selected-check {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 26px;
+    height: 26px;
+    background: #7c6af7;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 0 12px rgba(124,106,247,0.5);
+  }
+
+  .swatch.selected .selected-check { display: flex; }
+</style>
+</head>
+<body>
+
+<h1>Accent Color</h1>
+<p class="subtitle">Each preview shows the editorial layout — pick what feels right for your brand.</p>
+
+<div class="grid">
+
+  <!-- Orange Red -->
+  <div class="swatch" data-choice="orange-red" onclick="toggleSwatch(this)">
+    <div class="preview">
+      <div class="selected-check">✓</div>
+      <div class="label" style="color:#e85d3f;">Portfolio · 2025</div>
+      <div class="big-name">LAILA<br>MAJEED</div>
+      <div class="dash" style="background:#e85d3f;"></div>
+      <div class="tagline">Full stack developer who ships.</div>
+      <div class="grid-row">
+        <div class="cell accent-cell" style="background:#e85d3f;">
+          <div class="cell-label">Featured</div>
+          <div class="cell-name">Todo App</div>
+        </div>
+        <div class="cell">
+          <div class="cell-label">Project</div>
+          <div class="cell-name">Bookkeeping</div>
+        </div>
+        <div class="cell">
+          <div class="cell-label">Project</div>
+          <div class="cell-name">Recipe App</div>
+        </div>
+      </div>
+    </div>
+    <div class="swatch-info">
+      <h3><span class="color-dot" style="background:#e85d3f;"></span>Burnt Orange / Coral</h3>
+      <p>Warm, energetic, confident. Very editorial — feels like a design magazine or agency site.</p>
+    </div>
+  </div>
+
+  <!-- Electric Blue -->
+  <div class="swatch" data-choice="electric-blue" onclick="toggleSwatch(this)">
+    <div class="preview">
+      <div class="selected-check">✓</div>
+      <div class="label" style="color:#1d4ed8;">Portfolio · 2025</div>
+      <div class="big-name">LAILA<br>MAJEED</div>
+      <div class="dash" style="background:#1d4ed8;"></div>
+      <div class="tagline">Full stack developer who ships.</div>
+      <div class="grid-row">
+        <div class="cell accent-cell" style="background:#1d4ed8;">
+          <div class="cell-label">Featured</div>
+          <div class="cell-name">Todo App</div>
+        </div>
+        <div class="cell">
+          <div class="cell-label">Project</div>
+          <div class="cell-name">Bookkeeping</div>
+        </div>
+        <div class="cell">
+          <div class="cell-label">Project</div>
+          <div class="cell-name">Recipe App</div>
+        </div>
+      </div>
+    </div>
+    <div class="swatch-info">
+      <h3><span class="color-dot" style="background:#1d4ed8;"></span>Electric Blue</h3>
+      <p>Sharp, technical, professional. Strong contrast on cream — feels authoritative and modern.</p>
+    </div>
+  </div>
+
+  <!-- Deep Purple -->
+  <div class="swatch" data-choice="purple" onclick="toggleSwatch(this)">
+    <div class="preview">
+      <div class="selected-check">✓</div>
+      <div class="label" style="color:#7c3aed;">Portfolio · 2025</div>
+      <div class="big-name">LAILA<br>MAJEED</div>
+      <div class="dash" style="background:#7c3aed;"></div>
+      <div class="tagline">Full stack developer who ships.</div>
+      <div class="grid-row">
+        <div class="cell accent-cell" style="background:#7c3aed;">
+          <div class="cell-label">Featured</div>
+          <div class="cell-name">Todo App</div>
+        </div>
+        <div class="cell">
+          <div class="cell-label">Project</div>
+          <div class="cell-name">Bookkeeping</div>
+        </div>
+        <div class="cell">
+          <div class="cell-label">Project</div>
+          <div class="cell-name">Recipe App</div>
+        </div>
+      </div>
+    </div>
+    <div class="swatch-info">
+      <h3><span class="color-dot" style="background:#7c3aed;"></span>Deep Purple</h3>
+      <p>Keeps your current brand color but elevated — on a light editorial background it reads very differently from your current dark design.</p>
+    </div>
+  </div>
+
+  <!-- Acid Green -->
+  <div class="swatch" data-choice="acid-green" onclick="toggleSwatch(this)">
+    <div class="preview">
+      <div class="selected-check">✓</div>
+      <div class="label" style="color:#16a34a;">Portfolio · 2025</div>
+      <div class="big-name">LAILA<br>MAJEED</div>
+      <div class="dash" style="background:#16a34a;"></div>
+      <div class="tagline">Full stack developer who ships.</div>
+      <div class="grid-row">
+        <div class="cell accent-cell" style="background:#16a34a;">
+          <div class="cell-label">Featured</div>
+          <div class="cell-name">Todo App</div>
+        </div>
+        <div class="cell">
+          <div class="cell-label">Project</div>
+          <div class="cell-name">Bookkeeping</div>
+        </div>
+        <div class="cell">
+          <div class="cell-label">Project</div>
+          <div class="cell-name">Recipe App</div>
+        </div>
+      </div>
+    </div>
+    <div class="swatch-info">
+      <h3><span class="color-dot" style="background:#16a34a;"></span>Forest Green</h3>
+      <p>Unexpected and fresh — stands out in a sea of blue/purple portfolios. Grounded and creative.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggleSwatch(el) {
+    el.classList.toggle('selected');
+    const choice = el.dataset.choice;
+    if (window.__superpowers_record) {
+      window.__superpowers_record({ type: 'click', choice, text: el.querySelector('h3').textContent });
+    }
+  }
+</script>
+
+</body>
+</html>

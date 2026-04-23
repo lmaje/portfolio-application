@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Design Directions</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0f0f13;
+    color: #e0e0e0;
+    font-family: system-ui, sans-serif;
+    padding: 32px 24px 60px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .card {
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+    background: #1a1a22;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .card.selected {
+    border-color: #7c6af7;
+    box-shadow: 0 0 0 4px rgba(124,106,247,0.2), 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .card-preview {
+    height: 380px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-body {
+    padding: 20px 24px 24px;
+    background: #1a1a22;
+  }
+
+  .card-body h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .card-body p {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .selected-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    background: #7c6af7;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    z-index: 10;
+  }
+
+  .card.selected .selected-badge {
+    display: flex;
+  }
+
+  /* ── DIRECTION A: Neon Cyberpunk ── */
+  .preview-a {
+    background: #000010;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+  }
+
+  .preview-a .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(0,255,200,0.2);
+    background: rgba(0,255,200,0.03);
+  }
+
+  .preview-a .nav .logo {
+    font-size: 13px;
+    color: #00ffc8;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .preview-a .nav .links {
+    display: flex;
+    gap: 16px;
+    font-size: 10px;
+    color: rgba(0,255,200,0.5);
+  }
+
+  .preview-a .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,200,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,200,0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+  }
+
+  .preview-a .hero {
+    padding: 28px 20px 20px;
+    position: relative;
+  }
+
+  .preview-a .eyebrow {
+    font-size: 10px;
+    color: #00ffc8;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+
+  .preview-a .name {
+    font-size: 36px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+    text-shadow: 0 0 30px rgba(0,255,200,0.3);
+  }
+
+  .preview-a .name span {
+    color: #00ffc8;
+    text-shadow: 0 0 20px #00ffc8;
+  }
+
+  .preview-a .role {
+    font-size: 12px;
+    color: rgba(0,255,200,0.6);
+    margin-bottom: 16px;
+  }
+
+  .preview-a .glow-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #00ffc8, transparent);
+    margin-bottom: 16px;
+    box-shadow: 0 0 10px #00ffc8;
+  }
+
+  .preview-a .cta-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .preview-a .btn-primary {
+    font-size: 10px;
+    padding: 7px 14px;
+    background: transparent;
+    border: 1px solid #00ffc8;
+    color: #00ffc8;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 0 12px rgba(0,255,200,0.2), inset 0 0 12px rgba(0,255,200,0.05);
+  }
+
+  .preview-a .cards-row {
+    display: flex;
+    gap: 8px;
+    padding: 0 20px 16px;
+    margin-top: 16px;
+  }
+
+  .preview-a .proj-card {
+    flex: 1;
+    background: rgba(0,255,200,0.03);
+    border: 1px solid rgba(0,255,200,0.15);
+    border-radius: 4px;
+    padding: 10px;
+  }
+
+  .preview-a .proj-title {
+    font-size: 9px;
+    color: #00ffc8;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .preview-a .proj-line {
+    height: 4px;
+    background: rgba(0,255,200,0.08);
+    border-radius: 2px;
+    margin-bottom: 4px;
+  }
+
+  .preview-a .proj-line.short { width: 60%; }
+
+  .preview-a .scan-line {
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,255,200,0.3), transparent);
+    animation: scan 3s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes scan {
+    0% { top: 40px; opacity: 1; }
+    80% { opacity: 1; }
+    100% { top: 380px; opacity: 0; }
+  }
+
+  /* ── DIRECTION B: Editorial Bold ── */
+  .preview-b {
+    background: #fafaf8;
+    color: #111;
+    font-family: Georgia, serif;
+  }
+
+  .preview-b .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 2px solid #111;
+  }
+
+  .preview-b .logo {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #111;
+  }
+
+  .preview-b .links {
+    display: flex;
+    gap: 16px;
+    font-size: 10px;
+    color: #666;
+    font-family: system-ui;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .preview-b .hero {
+    padding: 24px 20px 20px;
+    position: relative;
+  }
+
+  .preview-b .big-number {
+    font-size: 100px;
+    font-weight: 900;
+    color: #f0f0ec;
+    line-height: 1;
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-family: system-ui;
+    user-select: none;
+    letter-spacing: -6px;
+  }
+
+  .preview-b .eyebrow {
+    font-family: system-ui;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #e85d3f;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    margin-left: 2px;
+  }
+
+  .preview-b .name {
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 0.95;
+    color: #111;
+    margin-bottom: 12px;
+    font-family: system-ui;
+    letter-spacing: -2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .preview-b .dash {
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #e85d3f;
+    margin: 12px 0;
+  }
+
+  .preview-b .tagline {
+    font-size: 12px;
+    color: #555;
+    font-family: system-ui;
+    line-height: 1.6;
+    max-width: 200px;
+  }
+
+  .preview-b .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #111;
+    margin-top: 20px;
+  }
+
+  .preview-b .proj-cell {
+    background: #fafaf8;
+    padding: 12px;
+  }
+
+  .preview-b .proj-label {
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #999;
+    font-family: system-ui;
+    margin-bottom: 4px;
+  }
+
+  .preview-b .proj-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    font-family: system-ui;
+    letter-spacing: -0.3px;
+  }
+
+  .preview-b .accent-cell {
+    background: #e85d3f;
+  }
+
+  .preview-b .accent-cell .proj-label,
+  .preview-b .accent-cell .proj-name {
+    color: #fff;
+  }
+
+  /* ── DIRECTION C: Glassmorphism / Gradient ── */
+  .preview-c {
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a1a 100%);
+    font-family: system-ui;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .preview-c .orb1 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(138,43,226,0.4), transparent 70%);
+    top: -50px;
+    right: -30px;
+    filter: blur(30px);
+  }
+
+  .preview-c .orb2 {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,191,255,0.3), transparent 70%);
+    bottom: 60px;
+    left: -40px;
+    filter: blur(25px);
+  }
+
+  .preview-c .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    z-index: 2;
+  }
+
+  .preview-c .logo {
+    font-size: 13px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.3px;
+  }
+
+  .preview-c .links {
+    display: flex;
+    gap: 16px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .preview-c .hero {
+    padding: 28px 20px 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .preview-c .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: rgba(167,139,250,0.8);
+    background: rgba(167,139,250,0.1);
+    border: 1px solid rgba(167,139,250,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .preview-c .badge::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: #a78bfa;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #a78bfa;
+  }
+
+  .preview-c .name {
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -1.5px;
+    color: #fff;
+  }
+
+  .preview-c .name span {
+    background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .preview-c .role {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 18px;
+    letter-spacing: 0.2px;
+  }
+
+  .preview-c .glass-cards {
+    display: flex;
+    gap: 8px;
+    padding: 0 20px 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .preview-c .glass-card {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 12px;
+  }
+
+  .preview-c .glass-card .dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+
+  .preview-c .glass-title {
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 4px;
+  }
+
+  .preview-c .glass-sub {
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    margin-bottom: 3px;
+  }
+
+  .preview-c .glass-sub.short { width: 60%; }
+
+  .preview-c .btns {
+    display: flex;
+    gap: 8px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .preview-c .btn-g {
+    font-size: 10px;
+    padding: 7px 16px;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    color: #fff;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+
+  .preview-c .btn-o {
+    font-size: 10px;
+    padding: 7px 16px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    border-radius: 20px;
+  }
+
+  /* Selection overlay */
+  .card .select-check {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    background: #7c6af7;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 20;
+    box-shadow: 0 0 16px rgba(124,106,247,0.6);
+  }
+
+  .card.selected .select-check {
+    display: flex;
+  }
+
+  .instruction {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-top: 32px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Three Design Directions</h1>
+<p class="subtitle">Click a card to select it — or select multiple. Let me know what resonates and what doesn't.</p>
+
+<div class="cards">
+
+  <!-- A: Neon Cyberpunk -->
+  <div class="card" data-choice="a" onclick="toggleCard(this)">
+    <div class="card-preview preview-a">
+      <div class="grid-bg"></div>
+      <div class="scan-line"></div>
+
+      <div class="nav">
+        <div class="logo">LM</div>
+        <div class="links">
+          <span>About</span><span>Work</span><span>Contact</span>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="eyebrow">Hello World</div>
+        <div class="name">Laila<br><span>Majeed</span></div>
+        <div class="role">Full Stack Developer_</div>
+        <div class="glow-line"></div>
+        <div class="cta-row">
+          <div class="btn-primary">View Work</div>
+        </div>
+      </div>
+
+      <div class="cards-row">
+        <div class="proj-card">
+          <div class="proj-title">Todo App</div>
+          <div class="proj-line"></div>
+          <div class="proj-line short"></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-title">Bookkeeping</div>
+          <div class="proj-line"></div>
+          <div class="proj-line short"></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-title">Recipe App</div>
+          <div class="proj-line"></div>
+          <div class="proj-line short"></div>
+        </div>
+      </div>
+
+      <div class="select-check">✓</div>
+    </div>
+    <div class="card-body">
+      <div class="tag" style="background:rgba(0,255,200,0.1);color:#00ffc8;">A</div>
+      <h3>Neon / Cyberpunk</h3>
+      <p>Dark background, electric teal/green glows, grid scanlines, monospace type. Animated scanline effect and glowing borders. Technical, futuristic, hacker-y vibe.</p>
+    </div>
+  </div>
+
+  <!-- B: Editorial Bold -->
+  <div class="card" data-choice="b" onclick="toggleCard(this)">
+    <div class="card-preview preview-b">
+      <div class="nav">
+        <div class="logo">Laila Majeed</div>
+        <div class="links">
+          <span>Work</span><span>About</span><span>Contact</span>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="big-number">01</div>
+        <div class="eyebrow">Portfolio 2025</div>
+        <div class="name">LAILA<br>MAJEED</div>
+        <span class="dash"></span>
+        <div class="tagline">Full stack developer who builds things that work.</div>
+      </div>
+
+      <div class="grid">
+        <div class="proj-cell accent-cell">
+          <div class="proj-label">Featured</div>
+          <div class="proj-name">Todo App</div>
+        </div>
+        <div class="proj-cell">
+          <div class="proj-label">Project</div>
+          <div class="proj-name">Bookkeeping</div>
+        </div>
+        <div class="proj-cell">
+          <div class="proj-label">Project</div>
+          <div class="proj-name">Recipe App</div>
+        </div>
+        <div class="proj-cell">
+          <div class="proj-label">Client Work</div>
+          <div class="proj-name">Gilguzi.com</div>
+        </div>
+      </div>
+
+      <div class="select-check">✓</div>
+    </div>
+    <div class="card-body">
+      <div class="tag" style="background:rgba(232,93,63,0.15);color:#e85d3f;">B</div>
+      <h3>Editorial / Bold Typography</h3>
+      <p>Light/cream background, huge black type, editorial grid layout. Inspired by magazine design and Awwwards sites. Bold, confident, and very different from typical dev portfolios.</p>
+    </div>
+  </div>
+
+  <!-- C: Glassmorphism / Gradient -->
+  <div class="card" data-choice="c" onclick="toggleCard(this)">
+    <div class="card-preview preview-c">
+      <div class="orb1"></div>
+      <div class="orb2"></div>
+
+      <div class="nav">
+        <div class="logo">Laila Majeed</div>
+        <div class="links">
+          <span>Work</span><span>About</span><span>Contact</span>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="badge">Available for work</div>
+        <div class="name">Laila <span>Majeed</span></div>
+        <div class="role">Full Stack Developer · Next.js · TypeScript</div>
+        <div class="btns" style="margin-bottom:16px;padding:0;">
+          <div class="btn-g">View Work</div>
+          <div class="btn-o">Contact</div>
+        </div>
+      </div>
+
+      <div class="glass-cards">
+        <div class="glass-card">
+          <div class="dot" style="background:linear-gradient(135deg,#a78bfa,#60a5fa)"></div>
+          <div class="glass-title">Todo App</div>
+          <div class="glass-sub"></div>
+          <div class="glass-sub short"></div>
+        </div>
+        <div class="glass-card">
+          <div class="dot" style="background:linear-gradient(135deg,#60a5fa,#34d399)"></div>
+          <div class="glass-title">Bookkeeping</div>
+          <div class="glass-sub"></div>
+          <div class="glass-sub short"></div>
+        </div>
+        <div class="glass-card">
+          <div class="dot" style="background:linear-gradient(135deg,#f472b6,#a78bfa)"></div>
+          <div class="glass-title">Recipe App</div>
+          <div class="glass-sub"></div>
+          <div class="glass-sub short"></div>
+        </div>
+      </div>
+
+      <div class="select-check">✓</div>
+    </div>
+    <div class="card-body">
+      <div class="tag" style="background:rgba(167,139,250,0.15);color:#a78bfa;">C</div>
+      <h3>Glassmorphism / Aurora</h3>
+      <p>Deep dark with aurora gradients (purple, blue, teal), frosted glass cards, gradient text. Smooth, premium, modern — the kind of design that feels expensive. Lots of room for fancy entrance animations.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="instruction">You can select multiple — let me know what you like or mix-and-match ideas from different options.</p>
+
+<script>
+  function toggleCard(el) {
+    el.classList.toggle('selected');
+    const choice = el.dataset.choice;
+    const selected = el.classList.contains('selected');
+    if (window.__superpowers_record) {
+      window.__superpowers_record({ type: 'click', choice, text: el.querySelector('h3').textContent });
+    }
+  }
+</script>
+
+</body>
+</html>
