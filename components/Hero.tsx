@@ -3,10 +3,8 @@
 import { useTypedText } from '@/hooks/useTypedText';
 
 const roles = [
-  'Full Stack Developer',
-  'React Developer',
-  'Next.js Engineer',
-  'UI/UX Enthusiast',
+  'Frontend Developer',
+  'Full-Stack Builder',
 ];
 
 export default function Hero() {
@@ -42,12 +40,14 @@ export default function Hero() {
           <a
             href="#projects"
             className="px-8 py-3 rounded-full font-semibold text-sm transition-all duration-200 hover:scale-105"
-            style={{ background: 'var(--accent)', color: '#fff' }}
+            style={{ background: 'var(--accent)', color: '#0a1628' }}
           >
             View My Work
           </a>
           <a
-            href="#contact"
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3 rounded-full font-semibold text-sm transition-all duration-200 hover:scale-105"
             style={{
               background: 'transparent',
@@ -55,7 +55,7 @@ export default function Hero() {
               border: '1px solid var(--accent)',
             }}
           >
-            Contact Me
+            Download Resume
           </a>
         </div>
       </div>

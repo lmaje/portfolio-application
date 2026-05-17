@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palette Comparison — PROTOTYPE</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #111;
+      color: #fff;
+      padding: 24px;
+    }
+    .page-title {
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .panel {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .panel-label {
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: #aaa;
+    }
+    .panel-body {
+      padding: 0;
+    }
+
+    /* ── NAV ── */
+    .mock-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mock-logo {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .mock-nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+    .mock-nav-links li {
+      font-size: 13px;
+      opacity: 0.5;
+    }
+    .mock-nav-links li.active {
+      opacity: 1;
+    }
+
+    /* ── HERO ── */
+    .mock-hero {
+      padding: 36px 24px 28px;
+    }
+    .mock-tag {
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+      opacity: 0.7;
+    }
+    .mock-headline {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .mock-subtitle {
+      font-size: 14px;
+      opacity: 0.45;
+      line-height: 1.6;
+      max-width: 340px;
+      margin-bottom: 20px;
+    }
+    .mock-cta {
+      display: inline-block;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: default;
+    }
+
+    /* ── PROJECT CARD ── */
+    .mock-card-wrap {
+      padding: 0 24px 28px;
+    }
+    .mock-card {
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .mock-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .mock-card-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .mock-badge {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 99px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .mock-card-desc {
+      font-size: 13px;
+      opacity: 0.45;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .mock-tags {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+    .mock-tag-pill {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.07);
+      opacity: 0.75;
+    }
+
+    /* ── PALETTE THEMES ── */
+
+    /* 1 — Refined Violet */
+    .violet .mock-nav  { background: #0d0d14; }
+    .violet .mock-hero { background: #0d0d14; }
+    .violet .mock-card-wrap { background: #0d0d14; }
+    .violet .mock-logo { color: #fff; }
+    .violet .mock-tag  { color: #8b7cf8; }
+    .violet .mock-headline { color: #fff; }
+    .violet .mock-headline span { color: #8b7cf8; }
+    .violet .mock-cta  { background: #8b7cf8; color: #fff; }
+    .violet .mock-card { background: #16151f; border-color: rgba(139,124,248,0.18); }
+    .violet .mock-badge { background: rgba(139,124,248,0.15); color: #8b7cf8; }
+
+    /* 2 — Deep Teal */
+    .teal .mock-nav  { background: #0a1628; }
+    .teal .mock-hero { background: #0a1628; }
+    .teal .mock-card-wrap { background: #0a1628; }
+    .teal .mock-logo { color: #fff; }
+    .teal .mock-tag  { color: #2dd4bf; }
+    .teal .mock-headline { color: #fff; }
+    .teal .mock-headline span { color: #2dd4bf; }
+    .teal .mock-cta  { background: #2dd4bf; color: #0a1628; }
+    .teal .mock-card { background: #0f1f35; border-color: rgba(45,212,191,0.18); }
+    .teal .mock-badge { background: rgba(45,212,191,0.12); color: #2dd4bf; }
+
+    /* 3 — Warm Amber */
+    .amber .mock-nav  { background: #0f0e0a; }
+    .amber .mock-hero { background: #0f0e0a; }
+    .amber .mock-card-wrap { background: #0f0e0a; }
+    .amber .mock-logo { color: #fff; }
+    .amber .mock-tag  { color: #f59e0b; }
+    .amber .mock-headline { color: #fff; }
+    .amber .mock-headline span { color: #f59e0b; }
+    .amber .mock-cta  { background: #f59e0b; color: #0f0e0a; }
+    .amber .mock-card { background: #1a180f; border-color: rgba(245,158,11,0.18); }
+    .amber .mock-badge { background: rgba(245,158,11,0.12); color: #f59e0b; }
+
+    /* 4 — Rose/Pink */
+    .rose .mock-nav  { background: #0f0a0b; }
+    .rose .mock-hero { background: #0f0a0b; }
+    .rose .mock-card-wrap { background: #0f0a0b; }
+    .rose .mock-logo { color: #fff; }
+    .rose .mock-tag  { color: #f43f5e; }
+    .rose .mock-headline { color: #fff; }
+    .rose .mock-headline span { color: #f43f5e; }
+    .rose .mock-cta  { background: #f43f5e; color: #fff; }
+    .rose .mock-card { background: #1c0f12; border-color: rgba(244,63,94,0.18); }
+    .rose .mock-badge { background: rgba(244,63,94,0.12); color: #f43f5e; }
+
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <p class="page-title">⚠ Prototype — palette comparison — throwaway</p>
+
+  <div class="grid">
+
+    <!-- 1. REFINED VIOLET -->
+    <div class="panel violet">
+      <div class="panel-label">1 — Refined Violet &nbsp;·&nbsp; #8b7cf8</div>
+      <div class="panel-body">
+        <nav class="mock-nav">
+          <span class="mock-logo">LM.</span>
+          <ul class="mock-nav-links">
+            <li>About</li>
+            <li class="active">Projects</li>
+            <li>Skills</li>
+            <li>Contact</li>
+          </ul>
+        </nav>
+        <div class="mock-hero">
+          <p class="mock-tag">// hello world</p>
+          <h1 class="mock-headline">Frontend Developer<br><span>→ Full-Stack Builder</span></h1>
+          <p class="mock-subtitle">Building clean, functional web apps with React, Next.js, and TypeScript.</p>
+          <a class="mock-cta">View Projects</a>
+        </div>
+        <div class="mock-card-wrap">
+          <div class="mock-card">
+            <div class="mock-card-header">
+              <span class="mock-card-title">Bookkeeping App</span>
+              <span class="mock-badge">Live</span>
+            </div>
+            <p class="mock-card-desc">A full-stack finance tracker with real-time data and clean UI components.</p>
+            <div class="mock-tags">
+              <span class="mock-tag-pill">React</span>
+              <span class="mock-tag-pill">TypeScript</span>
+              <span class="mock-tag-pill">Supabase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. DEEP TEAL -->
+    <div class="panel teal">
+      <div class="panel-label">2 — Deep Teal &nbsp;·&nbsp; #2dd4bf</div>
+      <div class="panel-body">
+        <nav class="mock-nav">
+          <span class="mock-logo">LM.</span>
+          <ul class="mock-nav-links">
+            <li>About</li>
+            <li class="active">Projects</li>
+            <li>Skills</li>
+            <li>Contact</li>
+          </ul>
+        </nav>
+        <div class="mock-hero">
+          <p class="mock-tag">// hello world</p>
+          <h1 class="mock-headline">Frontend Developer<br><span>→ Full-Stack Builder</span></h1>
+          <p class="mock-subtitle">Building clean, functional web apps with React, Next.js, and TypeScript.</p>
+          <a class="mock-cta">View Projects</a>
+        </div>
+        <div class="mock-card-wrap">
+          <div class="mock-card">
+            <div class="mock-card-header">
+              <span class="mock-card-title">Bookkeeping App</span>
+              <span class="mock-badge">Live</span>
+            </div>
+            <p class="mock-card-desc">A full-stack finance tracker with real-time data and clean UI components.</p>
+            <div class="mock-tags">
+              <span class="mock-tag-pill">React</span>
+              <span class="mock-tag-pill">TypeScript</span>
+              <span class="mock-tag-pill">Supabase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. WARM AMBER -->
+    <div class="panel amber">
+      <div class="panel-label">3 — Warm Amber &nbsp;·&nbsp; #f59e0b</div>
+      <div class="panel-body">
+        <nav class="mock-nav">
+          <span class="mock-logo">LM.</span>
+          <ul class="mock-nav-links">
+            <li>About</li>
+            <li class="active">Projects</li>
+            <li>Skills</li>
+            <li>Contact</li>
+          </ul>
+        </nav>
+        <div class="mock-hero">
+          <p class="mock-tag">// hello world</p>
+          <h1 class="mock-headline">Frontend Developer<br><span>→ Full-Stack Builder</span></h1>
+          <p class="mock-subtitle">Building clean, functional web apps with React, Next.js, and TypeScript.</p>
+          <a class="mock-cta">View Projects</a>
+        </div>
+        <div class="mock-card-wrap">
+          <div class="mock-card">
+            <div class="mock-card-header">
+              <span class="mock-card-title">Bookkeeping App</span>
+              <span class="mock-badge">Live</span>
+            </div>
+            <p class="mock-card-desc">A full-stack finance tracker with real-time data and clean UI components.</p>
+            <div class="mock-tags">
+              <span class="mock-tag-pill">React</span>
+              <span class="mock-tag-pill">TypeScript</span>
+              <span class="mock-tag-pill">Supabase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. ROSE/PINK -->
+    <div class="panel rose">
+      <div class="panel-label">4 — Rose / Pink &nbsp;·&nbsp; #f43f5e</div>
+      <div class="panel-body">
+        <nav class="mock-nav">
+          <span class="mock-logo">LM.</span>
+          <ul class="mock-nav-links">
+            <li>About</li>
+            <li class="active">Projects</li>
+            <li>Skills</li>
+            <li>Contact</li>
+          </ul>
+        </nav>
+        <div class="mock-hero">
+          <p class="mock-tag">// hello world</p>
+          <h1 class="mock-headline">Frontend Developer<br><span>→ Full-Stack Builder</span></h1>
+          <p class="mock-subtitle">Building clean, functional web apps with React, Next.js, and TypeScript.</p>
+          <a class="mock-cta">View Projects</a>
+        </div>
+        <div class="mock-card-wrap">
+          <div class="mock-card">
+            <div class="mock-card-header">
+              <span class="mock-card-title">Bookkeeping App</span>
+              <span class="mock-badge">Live</span>
+            </div>
+            <p class="mock-card-desc">A full-stack finance tracker with real-time data and clean UI components.</p>
+            <div class="mock-tags">
+              <span class="mock-tag-pill">React</span>
+              <span class="mock-tag-pill">TypeScript</span>
+              <span class="mock-tag-pill">Supabase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

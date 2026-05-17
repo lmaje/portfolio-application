@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react';
 import { skills } from '@/data/skills';
 import type { SkillCategory } from '@/lib/types';
 
-const categories: SkillCategory[] = ['Languages', 'Frameworks', 'Tools', 'Platforms'];
+const categories: SkillCategory[] = ['Languages', 'Frameworks', 'Design', 'Tools & Platforms'];
 
 export default function Skills() {
   return (

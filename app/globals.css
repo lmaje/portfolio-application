@@ -2,26 +2,26 @@
 
 /* ─── Design tokens ───────────────────────────── */
 :root {
-  --background: #0d0d0d;
-  --nav-bg: rgba(13, 13, 13, 0.85);
+  --background: #0a1628;
+  --nav-bg: rgba(10, 22, 40, 0.85);
   --text-primary: #f0f0f0;
   --text-secondary: #a0a0a0;
-  --text-muted: #555;
-  --accent: #7c6af7;
-  --accent-muted: rgba(124, 106, 247, 0.15);
+  --text-muted: #4a6080;
+  --accent: #2dd4bf;
+  --accent-muted: rgba(45, 212, 191, 0.15);
   --card-bg: rgba(255, 255, 255, 0.04);
   --tag-bg: rgba(255, 255, 255, 0.07);
   --border: rgba(255, 255, 255, 0.08);
 }
 
 [data-theme='light'] {
-  --background: #f8f8f8;
-  --nav-bg: rgba(248, 248, 248, 0.85);
-  --text-primary: #111;
-  --text-secondary: #555;
-  --text-muted: #999;
-  --accent: #5b47f5;
-  --accent-muted: rgba(91, 71, 245, 0.1);
+  --background: #f0fdfa;
+  --nav-bg: rgba(240, 253, 250, 0.85);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --accent: #0d9488;
+  --accent-muted: rgba(13, 148, 136, 0.1);
   --card-bg: rgba(0, 0, 0, 0.03);
   --tag-bg: rgba(0, 0, 0, 0.06);
   --border: rgba(0, 0, 0, 0.08);

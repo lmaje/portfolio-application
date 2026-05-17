@@ -10,11 +10,12 @@ export const skills: Skill[] = [
   { name: 'Next.js', category: 'Frameworks', icon: 'logos:nextjs-icon' },
   { name: 'React', category: 'Frameworks', icon: 'logos:react' },
   { name: 'Tailwind CSS', category: 'Frameworks', icon: 'logos:tailwindcss-icon' },
-  // Tools
-  { name: 'Git', category: 'Tools', icon: 'logos:git-icon' },
-  { name: 'GitHub', category: 'Tools', icon: 'mdi:github' },
-  // Platforms
-  { name: 'Supabase', category: 'Platforms', icon: 'logos:supabase-icon' },
-  { name: 'Vercel', category: 'Platforms', icon: 'logos:vercel-icon' },
-  { name: 'Wix', category: 'Platforms', icon: 'simple-icons:wix' },
+  // Design
+  { name: 'Figma', category: 'Design', icon: 'logos:figma' },
+  // Tools & Platforms
+  { name: 'Git', category: 'Tools & Platforms', icon: 'logos:git-icon' },
+  { name: 'GitHub', category: 'Tools & Platforms', icon: 'mdi:github' },
+  { name: 'Supabase', category: 'Tools & Platforms', icon: 'logos:supabase-icon' },
+  { name: 'Vercel', category: 'Tools & Platforms', icon: 'logos:vercel-icon' },
+  { name: 'Wix', category: 'Tools & Platforms', icon: 'simple-icons:wix' },
 ];

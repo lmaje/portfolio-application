@@ -21,7 +21,7 @@ export default function About() {
               style={{ background: 'var(--card-bg)', border: '1px solid var(--border)' }}
             >
               <Image
-                src="https://api.dicebear.com/9.x/avataaars/svg?seed=Laila&top=hijab&topColor=2c1a0e&facialHair=&accessories=prescription02&accessoriesColor=transparent&clothe=blazerAndShirt&clotheColor=3c4f5c&eyes=default&eyebrow=defaultNatural&mouth=smile&skin=tanned"
+                src="https://api.dicebear.com/9.x/avataaars/svg?seed=Laila&top[]=hijab&topColor=e8d5b0&skin=tanned&eyes[]=default&eyebrow[]=defaultNatural&mouth[]=smile&clothe[]=blazerAndShirt&clotheColor=6b3a2a&accessories[]=&facialHair[]="
                 alt="Laila Majeed"
                 width={208}
                 height={208}
@@ -40,13 +40,10 @@ export default function About() {
               A developer who ships.
             </h2>
             <p className="text-lg leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
-              Hi, I&apos;m Laila — a self-driven developer who loves turning ideas into real, usable products.
-              I build full-stack web applications end-to-end, from database design to polished UI, using
-              Next.js, TypeScript, and Supabase.
+              I&apos;m Laila — a frontend-leaning developer who builds full-stack web apps with React, Next.js, and TypeScript.
             </p>
             <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              I care deeply about clean code and experiences that just work — and I love the moment when
-              something I built actually helps someone.
+              I come from a diverse background in project management and community work, which means I ship with both technical precision and real-world empathy.
             </p>
 
             <div className="flex gap-4 mt-8">

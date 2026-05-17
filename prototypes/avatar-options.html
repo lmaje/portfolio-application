@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avatar Options — PROTOTYPE</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a1628;
+      color: #f0f0f0;
+      padding: 40px 24px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4a6080;
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .avatar-wrap {
+      width: 160px;
+      height: 160px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(45,212,191,0.08);
+      border: 2px solid rgba(45,212,191,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .label {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f0f0f0;
+    }
+    .desc {
+      font-size: 12px;
+      color: #4a8080;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .pick-btn {
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 99px;
+      border: 1px solid #2dd4bf;
+      color: #2dd4bf;
+      background: transparent;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+    .pick-btn:hover { background: rgba(45,212,191,0.1); }
+  </style>
+</head>
+<body>
+  <h1>⚠ Prototype — avatar options — throwaway</h1>
+
+  <div class="grid">
+
+    <!-- Option 1: Avataaars with hijab -->
+    <div class="card">
+      <div class="avatar-wrap">
+        <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Laila&top[]=hijab&topColor=e8d5b0&skin=tanned&eyes[]=default&eyebrow[]=defaultNatural&mouth[]=smile&clothe[]=blazerAndShirt&clotheColor=6b3a2a&accessories[]=&facialHair[]=" alt="Option 1" />
+      </div>
+      <span class="label">Option 1 — Cartoon</span>
+      <p class="desc">Classic illustrated style with hijab,<br>matched to your cream & brown tones.</p>
+      <button class="pick-btn">Pick this one</button>
+    </div>
+
+    <!-- Option 2: Lorelei — modern illustrated -->
+    <div class="card">
+      <div class="avatar-wrap" style="background: rgba(45,212,191,0.06);">
+        <img src="https://api.dicebear.com/9.x/lorelei/svg?seed=Laila&backgroundColor=transparent&hair[]=hijab&hairColor=e8d5b0&skinColor=d08b5b&eyes[]=variant01&mouth[]=happy01" alt="Option 2" />
+      </div>
+      <span class="label">Option 2 — Illustrated</span>
+      <p class="desc">Modern flat illustration style.<br>Clean and minimal.</p>
+      <button class="pick-btn">Pick this one</button>
+    </div>
+
+    <!-- Option 3: Notionists — sketch portrait -->
+    <div class="card">
+      <div class="avatar-wrap" style="background: rgba(45,212,191,0.06);">
+        <img src="https://api.dicebear.com/9.x/notionists/svg?seed=Laila&backgroundColor=transparent" alt="Option 3" />
+      </div>
+      <span class="label">Option 3 — Sketch</span>
+      <p class="desc">Hand-drawn sketch aesthetic.<br>Unique and personal feel.</p>
+      <button class="pick-btn">Pick this one</button>
+    </div>
+
+    <!-- Option 4: Micah — geometric minimal -->
+    <div class="card">
+      <div class="avatar-wrap" style="background: rgba(45,212,191,0.08);">
+        <img src="https://api.dicebear.com/9.x/micah/svg?seed=Laila&backgroundColor=transparent&baseColor=d08b5b&mouth[]=smile&eyes[]=eyes&ear[]=attached&hair[]=hijab&hairColor=e8d5b0&shirt[]=collared&shirtColor=6b3a2a" alt="Option 4" />
+      </div>
+      <span class="label">Option 4 — Geometric</span>
+      <p class="desc">Clean geometric shapes, minimal lines.<br>Modern and tech-forward look.</p>
+      <button class="pick-btn">Pick this one</button>
+    </div>
+
+  </div>
+</body>
+</html>
